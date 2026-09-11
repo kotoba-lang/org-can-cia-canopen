@@ -146,8 +146,8 @@ guessing at recovery.
 ## Verify
 
 ```sh
-clojure -M:test                                                       # JVM
-nbb --classpath "$(clojure -A:cljs -Spath)" scripts/verify-cljs.cljk  # ClojureScript
+kbb -M:test                                                       # JVM
+kbb --backend sci --classpath "$(kbb -A:cljs -Spath)" scripts/verify-cljs.cljk  # ClojureScript
 ```
 
 Real counts as run for this README: **40 tests, 26110 assertions, 0
@@ -186,8 +186,8 @@ flip sign for a value this small. `unpack-mapping-entry`'s
 `unsigned-bit-shift-right`/`bit-and` field extraction was already
 sign-agnostic and worked fine — but its *entry range check*,
 `(<= 0 entry 0xFFFFFFFF)`, rejected the negative representation outright,
-even though it was a perfectly valid mapping entry. `clojure -M:test`
-passed clean; only `nbb .../verify-cljs.cljs` caught it, failing
+even though it was a perfectly valid mapping entry. `kbb -M:test`
+passed clean; only `kbb --backend sci .../verify-cljs.cljk` caught it, failing
 `mapping-entry-round-trip-sweep` on roughly half its 2000 random 32-bit
 samples (every one with the top bit set). Fixed by normalising both the
 packed output and the unpacked input with `unsigned-bit-shift-right ...
@@ -212,7 +212,7 @@ repeating instead of alternating). The test asserts the SPECIFIC returned
 reason is `:canopen/sdo-toggle-mismatch`, not merely `:error`. To confirm
 this assertion is load-bearing rather than dead code, `check-toggle`'s
 comparison `(= expected toggle)` was temporarily changed to the constant
-`true` (always "matches"), and `clojure -M:test` re-run: exactly
+`true` (always "matches"), and `kbb -M:test` re-run: exactly
 `negative-sdo-toggle-mismatch` failed (expected `:error
 :canopen/sdo-toggle-mismatch`, got `:ok 0` — the corrupted toggle was
 silently accepted as valid), while all 39 other tests still passed. The
