@@ -8,7 +8,7 @@
   message / commentary rather than against CiA 301 text, which is a
   paywalled CAN in Automation membership document this project has no
   access to."
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [kotoba.test :refer [deftest is testing]]
             [canopen.cob-id :as cob]
             [canopen.nmt :as nmt]
             [canopen.sdo :as sdo]
