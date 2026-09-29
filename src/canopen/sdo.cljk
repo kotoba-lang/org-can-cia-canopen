@@ -7,7 +7,7 @@
   on `0x580+node` (see `canopen.cob-id`).
 
   Every SDO frame's byte 0 is a **command-specifier byte**, and this is the
-  packed-bitfield-next-to-a-flag case the CLAUDE.md conformance floor
+  packed-bitfield-next-to-a-flag case the AGENTS.md conformance floor
   calls out: it is not one 8-bit enum, it is up to four fields sharing a
   byte, and which fields are meaningful depends on *which* SDO service the
   byte belongs to.
